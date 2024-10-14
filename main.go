@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"KCLHack-PU-Back/database"
+	"KCLHack-PU-Back/services"
 
 	"github.com/labstack/echo/v4"
 )
@@ -21,6 +22,13 @@ func connect(c echo.Context) error {
 
 func main() {
 	e := echo.New()
+
+	// POST
+	e.POST("/create/user", services.NewUser)
+
+	// GET
 	e.GET("/", connect)
+
+
 	e.Logger.Fatal(e.Start(":8080"))
 }
