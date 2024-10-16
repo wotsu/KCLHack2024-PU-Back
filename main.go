@@ -29,6 +29,9 @@ func main() {
 	// GET
 	e.GET("/", connect)
 
+	// PUT
+	e.PUT("/update/username/:id", services.UpdateUser)
+
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
