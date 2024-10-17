@@ -3,7 +3,7 @@
 package crud
 
 import (
-	"KCL-Hack2024-PU-Back/database"
+	"KCLHack-PU-Back/database"
 )
 
 func CreatePostDB(post database.Post) (database.Post, error) {
