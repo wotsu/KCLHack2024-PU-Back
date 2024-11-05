@@ -30,10 +30,11 @@ func main() {
 	// GET
 	e.GET("/", connect)
 	e.GET("/get/users", services.GetUsers)
-	e.GET("get/posts", services.GetPosts)
+	e.GET("/get/posts", services.GetPosts)
 
 	// PUT
 	e.PUT("/update/username/:id", services.UpdateUser)
+	e.PUT("/update/post/:postId", services.UpdatePost)
 
 	// DELETE
 	e.DELETE("/delete/user/:id", services.DeleteUser)
