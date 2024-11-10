@@ -14,7 +14,8 @@ func NewUser(c echo.Context) error {
 
 	user := database.User{}
 	type body struct {
-		Name string `json:"name"`
+		Name     string `json:"name"`
+		Password string `json:"password"`
 	}
 	obj := body{}
 
@@ -22,9 +23,14 @@ func NewUser(c echo.Context) error {
 		return err;
 	}
 	user.Name = obj.Name
+	user.Password = obj.Password
 
 	if user.Name == "" {
 		return echo.NewHTTPError(http.StatusBadRequest, "User name is required.")
+	}
+
+	if user.Password == "" {
+		return echo.NewHTTPError(http.StatusBadRequest, "Password  is required.")
 	}
 
 	user = crud.CreateUserDB(user)
