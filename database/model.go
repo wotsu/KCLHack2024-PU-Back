@@ -5,6 +5,7 @@ import "time"
 type User struct {
 	ID        uint      `json:"id" param:"id"` // id
 	Name      string    `json:"name"`          // name
+	Password  string    `json:"password"`      // password
 	CreatedAt time.Time `json:"created_at"`    // created_at
 	UpdatedAt time.Time `json:"updated_at"`    // updated_at
 }
