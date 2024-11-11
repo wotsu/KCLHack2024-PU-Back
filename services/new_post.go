@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+	"github.com/golang-jwt/jwt/v5"
 
 	"KCLHack-PU-Back/database"
 	"KCLHack-PU-Back/crud"
@@ -12,11 +13,10 @@ import (
 func NewPost(c echo.Context) error {
 
 	post := database.Post{}
-	type body struct {
-		UserName   string    `json:"user_name"`     
-		Task       string    `json:"task"`          
-		Importance uint      `json:"importance"`    
-		Deadline   string    `json:"deadline"`      
+	type body struct {   
+		Task       string    `json:"task"`
+		Importance uint      `json:"importance"`
+		Deadline   string    `json:"deadline"`
 	}
 
 	obj := body{}
@@ -24,7 +24,11 @@ func NewPost(c echo.Context) error {
 		return err;
 	}
 
-	post.UserName = obj.UserName
+	user := c.Get("user").(*jwt.Token)
+    claims := user.Claims.(jwt.MapClaims)
+    name := claims["name"].(string)
+
+	post.UserName = name
 	post.Task = obj.Task
 	post.Importance = obj.Importance
 	post.Deadline = obj.Deadline
