@@ -25,6 +25,14 @@ func NewUser(c echo.Context) error {
 	user.Name = obj.Name
 	user.Password = obj.Password
 
+	// ユーザー名が被らないか確認
+	users := crud.FetchUsers([]database.User{})
+	for _, fetched_user := range users {
+		if fetched_user.Name == user.Name {
+			return echo.NewHTTPError(http.StatusConflict, "This username is already exist.")
+		}
+	}
+
 	if user.Name == "" {
 		return echo.NewHTTPError(http.StatusBadRequest, "User name is required.")
 	}
