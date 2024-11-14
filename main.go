@@ -60,6 +60,9 @@ func main() {
 	// POST
 	authGroup.POST("/create/post", services.NewPost)
 
+	// GET
+	authGroup.GET("/get/posts/specific_user", services.GetPostsFromUser)
+
 	// PUT
 	authGroup.PUT("/update/username/:id", services.UpdateUser)
 	authGroup.PUT("/update/post/:postId", services.UpdatePost)
