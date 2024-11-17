@@ -62,6 +62,7 @@ func main() {
 
 	// GET
 	authGroup.GET("/get/posts/specific_user", services.GetPostsFromUser)
+	authGroup.GET("/get/posts", services.GetPosts)
 
 	// PUT
 	authGroup.PUT("/update/username/:id", services.UpdateUser)
@@ -79,7 +80,6 @@ func main() {
 	// GET
 	e.GET("/", connect)
 	e.GET("/get/users", services.GetUsers)
-	e.GET("/get/posts", services.GetPosts)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
